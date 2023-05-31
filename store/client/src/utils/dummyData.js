@@ -1,0 +1,51 @@
+
+export default [
+  {
+    id: 1,
+    message: "3e4097a21eb4f47ba86e604b48802f68",
+    timestamp: "05/11/2023, 4:33:21 PM",
+    addressFrom: "0xDUMMY1",
+    amount: "0.01",
+    addressTo: "0xDUMMY2",
+  },
+  {
+    id: 2,
+    message: "2b8ab31abb0e72f4bb7a3ae4f94bf5e9",
+    timestamp: "05/11/2023, 4:33:21 PM",
+    addressFrom: "0xDUMMY1",
+    amount: "0.01",
+    addressTo: "0xDUMMY2",
+  },
+  {
+    id: 3,
+    message: "1f73ff47f0ad96676203318ba91166b3",
+    timestamp: "05/11/2023, 4:33:21 PM",
+    addressFrom: "0xDUMMY1",
+    amount: "0.01",
+    addressTo: "0xDUMMY2",
+  },
+  {
+    id: 4,
+    message: "1ac025f94d5ee4520d6b4f4f4ab255ae",
+    timestamp: "05/11/2023, 4:33:21 PM",
+    addressFrom: "0xDUMMY1",
+    amount: "0.01",
+    addressTo: "0xDUMMY2",
+  },
+  {
+    id: 5,
+    message: "4dbd2fe4fb5e60f51dec159857bcbf90",
+    timestamp: "05/11/2023, 4:33:21 PM",
+    addressFrom: "0xDUMMY1",
+    amount: "0.01",
+    addressTo: "0xDUMMY2",
+  },
+  {
+    id: 6,
+    message: "01c0cb54c8e36d18eebb35a46f3d89f4",
+    timestamp: "05/11/2023, 4:33:21 PM",
+    addressFrom: "0xDUMMY1",
+    amount: "0.01",
+    addressTo: "0xDUMMY2",
+  },
+];

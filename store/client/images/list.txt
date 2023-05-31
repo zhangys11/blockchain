@@ -1,0 +1,58 @@
+ Volume in drive C has no label.
+ Volume Serial Number is 02EE-25EE
+
+ Directory of C:\Users\eleve\Documents\codex\blockchain\krypt\client\images
+
+[.]                                    [..]
+01c0cb54c8e36d18eebb35a46f3d89f4.jpg   02134d9cef83d78f8c17a0fca6587329.jpg
+03541fa985e172b827eb4ec4706aebc9.jpg   05b5c67348e258b849063e4f57fe780c.jpg
+05fee867f703f0946640d0f473ef8f2b.jpg   06f9281129cc851b9919cc5c6770dd02.jpg
+1277d7e73b062aef5d7252c52e590b58.jpg   14c5ae5d856a51a225594405c3ac4bf7.jpg
+1972b7b9bc4a9c2cd6cb0135f98cba02.jpg   1ac025f94d5ee4520d6b4f4f4ab255ae.jpg
+1f73ff47f0ad96676203318ba91166b3.jpg   23d4e858d4321045cb564c122ae4f4a0.jpg
+2b8ab31abb0e72f4bb7a3ae4f94bf5e9.jpg   30cadf289825271c6858fee3af52cf97.jpg
+3585f0d17528c92bb32dabbdfc34f315.jpg   39c0e1eefe4a414dd94cf3ebc2de927a.jpg
+39cda097b97f69fb961c33e9c2809211.jpg   3e4097a21eb4f47ba86e604b48802f68.jpg
+4369747ce613e0cec77947618cf8eeb6.jpg   4425b92f8580b2d49d098b79b6840ce7.jpg
+450f3f199fd63c9c2bfda25d2aaccea7.jpg   4dbd2fe4fb5e60f51dec159857bcbf90.jpg
+5050ad49f13c9972389600df573135b6.jpg   555556aeb18775264cbff7f0af318ffe.jpg
+568b240cdaeb777f504874a21a2595de.jpg   5719bad603c0e63d6b961faa9d58187d.jpg
+59b371e6d8293b3efb469eb04aae0391.jpg   5f71068af2990c12450eb73fc93f0601.jpg
+61be506021fead8a057debe378bf29d7.jpg   62649ed01b013b3d96b4779a5c0b2ec5.jpg
+66a6d704f9c71a37403f3574a408bb72.jpg   681be6d1164132f1392ae7b1a1c7f011.jpg
+68a5f9daa2d692d22da40a3078cbcfa5.jpg   6aa04efe6430334e2d4fb0a235111c0d.jpg
+6e2bf9678679566d5907de88fda9b938.jpg   701b36e3f2af7767fbf1f2ec7e819809.jpg
+713e24c774814381f47290dfb67bcd89.jpg   72017c2c43eab1929f0bbe7cd6f1edd4.jpg
+7328ab1024d600d78221d213c49cc126.jpg   79cf00eab794aebb5671cad473fb3047.jpg
+7a3137e1705c1ef42ae9ca0b8e185230.jpg   7ac662491a09faa641aed0c8c4b0e028.jpg
+86ca020e8bfd771e1ff804088cabf971.jpg   870ee884e0e82a1271e26675303a5ca0.jpg
+87ab56fa798ba421eed4dceccb072469.jpg   891dfff4d2f84dab31ef33fe52010a02.jpg
+8ad39e570b42287486305ee3f247696d.jpg   8b78ed7786ccdf96beca805223618e2e.jpg
+92966aab5ef05375eddf5d09b56d9519.jpg   93db9b525111e455936152a7b6a397dc.jpg
+967c5e65d876cf3feba669b31cb68502.jpg   97aaab419ede6905ffb85965859cf9a6.jpg
+98c75d25eda7bb2bc2b5be9260acdc2f.jpg   98e838c826abca157d54d0808f25dd8d.jpg
+9a73ce7ea150ed2f488310e9ee1bbe3b.jpg   9b6a7780a918a597c7484400c7f0caed.jpg
+9b8f9916c18a1f16112dcd34a6e70a97.jpg   a2db4540ba3dfb16542139809ee7a950.jpg
+ad35eb96abb8f4a8468240622550938c.jpg   aeafd5e88714fb9240998628d94917f0.jpg
+b36c6eb1bf0012d1f3f6563c24d48b75.jpg   b85a7ca394635e19a834d87d790b22a0.jpg
+b97c5d3f4edaf8dcaa696550f1c65a58.jpg   bfe489fac1f9486bbec7cf6d8a50727e.jpg
+c0ccdff089c6bb7db91c156ea86b7859.jpg   c861c55b65666188c99058f40fccaa59.jpg
+cbbe9b1befc5cf0bbf9c3e3598c005f8.jpg   cd97ac33dedaedfc7ad750fe7a5469a7.jpg
+cdb5531485cc0d2747f1169e535ff384.jpg   coffee.png
+d050316029dd0d2cfc7c4458c319d4b5.jpg   d1ae2bffc90630667374d9241169a29d.jpg
+d256a9f3beb4f780caf899b27efaefea.jpg   d54f24f8a196d62c4f078bca9f2f0c72.jpg
+d667c591a045d6af7f3f15b35ff59bcc.jpg   dc73d82c73d8f89189510cad6e290886.jpg
+de2d4ec88e848cee95420c493cc4e849.jpg   e17bf2a19b5b36c97b12d2ab69e547fe.jpg
+e2098dac327c729a1d4f2f27f1fe21fa.jpg   e54e6cf26f5c7b43a9fec3246551dd7b.jpg
+e74eae39c409057b33d2d3d67f058e7e.jpg   e83bea57e9d605b28dea924e01c4a400.jpg
+eb7dbee497ad99013aa1777cfb019d69.jpg   ebb0ed4aa410b6ec4f54c1158f6d5a2e.jpg
+ec8f6311871cbc8bf8eecde45354b75d.jpg   f1d8d2c6ff1070ee2cb6efdad99f41f6.jpg
+f512ceed3edbbbe45fa701d70aceb5a5.jpg   f63a013e32a962f8015e8466e831b05a.jpg
+f66596bdd53ca7c1d23ac2a21d34ba32.jpg   f66d3bba63b1cd3af9672ae1b45d53d8.jpg
+f9aa9fa5eaf76bff534b104e09e79b0e.jpg   ff9766edd65870f6510a97908ce44272.jpg
+list.txt                               logo.png
+react.svg                              starbucks.png
+sunflower.png                          sunflowers.png
+vite.svg                               wave.png
+             100 File(s)      9,522,879 bytes
+               2 Dir(s)  695,501,250,560 bytes free
