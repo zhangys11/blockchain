@@ -1,7 +1,7 @@
  Volume in drive C has no label.
  Volume Serial Number is 02EE-25EE
 
- Directory of C:\Users\eleve\Documents\codex\blockchain\krypt\client\images
+ Directory of C:\Users\eleve\Documents\codex\blockchain\store\client\images
 
 [.]                                    [..]
 01c0cb54c8e36d18eebb35a46f3d89f4.jpg   02134d9cef83d78f8c17a0fca6587329.jpg

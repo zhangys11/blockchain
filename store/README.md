@@ -75,3 +75,21 @@ The dApp needs gas to operate. Get some sepoliaETH from https://faucet.sepolia.c
 ![faucet](./client/images/faucet.png)
 
 Run prepare_imageset.ipynb to resize and rename images and store them to the ./client/images folder.
+
+## Deploy on CentOS + nginx
+
+```
+# curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
+# sudo yum install -y nodejs
+```
+
+Enter the src folder in server.  
+```
+sudo npm install
+sudo npm run build
+``` 
+
+Copy /images to /dist and set the /dist as the website's working folder.   
+Set the website's php version to static (php not needed).  
+
+Finished.
