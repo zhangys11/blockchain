@@ -21,10 +21,10 @@ const TransactionsCard = ({ addressTo, addressFrom, timestamp, batch_id, phase_i
       <div className="flex flex-col items-center w-full mt-3">
         <div className="display-flex justify-start w-full mb-6 p-2">
           <a href={`https://sepolia.etherscan.io/address/${addressFrom}`} target="_blank" rel="noreferrer">
-            <p className="text-white text-base">Operator/Uploader: {shortenAddress(addressFrom)}</p>
+            <p className="text-white text-base text-sm">Operator/Uploader: {shortenAddress(addressFrom)}</p>
           </a>
           <a href={`https://sepolia.etherscan.io/address/${addressTo}`} target="_blank" rel="noreferrer">
-            <p className="text-white text-base">Chain: {shortenAddress(addressTo)}</p>
+            <p className="text-white text-base text-sm">Chain: {shortenAddress(addressTo)}</p>
           </a>
           {batch_id && (
             <p className="text-white text-base">{batch_id.length > 32? batch_id.substring(0,30) + '...': batch_id}</p>
@@ -64,7 +64,7 @@ const Transactions = () => {
       <div className="flex flex-col md:p-12 py-12 px-4">
         {currentAccount ? (
           <h4 className="text-white text-3xl text-center my-2">
-            Latest Transactions
+            Product Tracing & Tracking
           </h4>
         ) : (
           <h4 className="text-white text-3xl text-center my-2">

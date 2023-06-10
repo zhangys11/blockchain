@@ -28,12 +28,34 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 
 const Welcome = () => {
   const { currentAccount, connectWallet, handleChange, 
-    sendTransaction, formData, isLoading } = useContext(TransactionContext);
+    sendTransaction, formData, setformData, isLoading } = useContext(TransactionContext);
 
   const handleSubmit = (e) => {
 
-    const { addressTo, amount, batch_id, phase_id, metadata, digest } = formData;
+    const {addressTo, amount, batch_id, phase_id, metadata, digest} = formData;
+    // console.log(addressTo, amount, batch_id, phase_id, metadata, digest)
     
+    /*
+    if (!addressTo){
+      addressTo = 0x28c6861Faa32F6f5135eFdaBDf5af7C4D6d057F8
+    }
+    if (!amount){
+      amount = 0
+    }
+    if (!batch_id){
+      batch_id = '061744301002000041.T000100467'
+    }
+    if (!phase_id){
+      phase_id = '{"id": 1, "name": "育苗"}'
+    }
+    if(!metadata){
+      metadata = '{"modality": 高效液相色谱(HPLC), "range": "亚麻酸: 2%-10%", "value": "3%"}'
+    }
+    if(!digest){
+      digest = '0e32dcede2d988353f09902da630e397'
+    }
+    */
+
     e.preventDefault();
 
     if (!addressTo || !amount || !batch_id || !phase_id || !metadata || !digest ) return;
@@ -63,7 +85,7 @@ const Welcome = () => {
                   ):
                   (
                     <span className="px-2 py-0.5 bg-red-500 text-white rounded font-semibold text-lg mt-1">
-                      Unregistered operator
+                      Unverified operator
                     </span>
                   )
                 }                
@@ -85,12 +107,12 @@ const Welcome = () => {
           &nbsp;&nbsp;&nbsp;&nbsp;
           
           <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-            <input placeholder="Address To" name="addressTo" type="hidden" value="0x28c6861Faa32F6f5135eFdaBDf5af7C4D6d057F8" onChange={handleChange} />
-            <input placeholder="Amount (ETH)" name="amount" type="hidden" value="0" onChange={handleChange} />
-            <Input placeholder="Batch ID" name="batch_id" type="text" value="T000LYLM" handleChange={handleChange} />
-            <Input placeholder="Phase ID" name="phase_id" type="text" value='{"id": 1, "name": "育苗"}' handleChange={handleChange} />
-            <Input placeholder="Metadata (json)" name="metadata" value='{"modality": 高效液相色谱(HPLC), "range": "亚麻酸: 2%-10%", "value": "3%"}' type="text" handleChange={handleChange} />
-            <Input placeholder="Digest" name="digest" value="0e32dcede2d988353f09902da630e397" type="text" handleChange={handleChange} />
+            <input placeholder="Address To" name="addressTo" type="hidden" onChange={handleChange} />
+            <input placeholder="Amount (ETH)" name="amount" type="hidden" onChange={handleChange} />
+            <Input placeholder="Batch ID" name="batch_id" type="text" handleChange={handleChange} />
+            <Input placeholder="Phase ID" name="phase_id" type="text" handleChange={handleChange} />
+            <Input placeholder="Metadata (json)" name="metadata"  type="text" handleChange={handleChange} />
+            <Input placeholder="Digest" name="digest" type="text" handleChange={handleChange} />
 
             <div className="h-[1px] w-full bg-gray-400 my-2" />
 

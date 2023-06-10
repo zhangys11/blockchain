@@ -16,7 +16,15 @@ const createEthereumContract = () => {
 };
 
 export const TransactionsProvider = ({ children }) => {
-  const [formData, setformData] = useState({ addressTo: "", amount: "", batch_id: "", phase_id: "", metadata: "", digest: "" });
+  const [formData, setformData] = useState(
+    { 
+      addressTo: "0x28c6861Faa32F6f5135eFdaBDf5af7C4D6d057F8", 
+      amount: "0", 
+      batch_id: "061744301002000041.T000100467", 
+      phase_id: '{"id": 1, "name": "育苗"}', 
+      metadata:  '{"modality": 高效液相色谱(HPLC), "range": "亚麻酸: 2%-10%", "value": "3%"}', 
+      digest: "0e32dcede2d988353f09902da630e397" 
+    });
   const [currentAccount, setCurrentAccount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [transactionCount, setTransactionCount] = useState(localStorage.getItem("transactionCount"));
@@ -44,7 +52,7 @@ export const TransactionsProvider = ({ children }) => {
           amount: 0 // parseInt(transaction.amount._hex) / (10 ** 18)
         }));
 
-        console.log(structuredTransactions);
+        // console.log(structuredTransactions);
 
         setTransactions(structuredTransactions);
       } else {
