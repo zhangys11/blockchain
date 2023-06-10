@@ -1,4 +1,6 @@
-# Web 3.0 Blockchain Application
+# Web 3.0 Blockchain Applications
+
+## 1. Dapp1 - store
 
 This project is based on this Web3.0 tutorial (https://www.youtube.com/watch?v=Wn_Kb3MR_cU).
 
@@ -6,6 +8,10 @@ This project is based on this Web3.0 tutorial (https://www.youtube.com/watch?v=W
 
 This dApp allows users to store the hash code (unique digital fingerprint) of an asset (e.g., images) to the blockchain via an ethereum smart contract.  
 Note: The image is stored in local server, but its hash code is stored in the blockchain.
+
+## 2. Dapp2 - trace
+
+This project is modified from the above dApp. We revised the smart contract to add more tracing-related data fields. 
 
 # Steps
 
@@ -39,6 +45,7 @@ module.exports = {
 ## Write the smart contract (Transaction.sol).
 
 This contract defines and stores a struct to the blockchain.  
+In solidity, `msg` is a global variable in Solidity which handles everything related to the blockchain in the properties that it holds. Right from the gas fees to the amount of ether required to call any function in the smart contract, all of these values are stored inside the msg global variable and can be accessed by using the dot(.) operator.
 
 1. Setup env and compile the contract.
 
