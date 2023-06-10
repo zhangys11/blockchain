@@ -7,5 +7,5 @@ typechain
 #Hardhat files
 cache
 artifacts
-/images/
+/images.aigc/
 *.mp4

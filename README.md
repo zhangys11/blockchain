@@ -4,28 +4,31 @@
 
 This project is based on this Web3.0 tutorial (https://www.youtube.com/watch?v=Wn_Kb3MR_cU).
 
-![Screenshot](./client/images/gui.png)
+![Screenshot](./images/gui.png)
 
 This dApp allows users to store the hash code (unique digital fingerprint) of an asset (e.g., images) to the blockchain via an ethereum smart contract.  
 Note: The image is stored in local server, but its hash code is stored in the blockchain.
 
 ## 2. Dapp2 - trace
 
-This project is modified from the above dApp. We revised the smart contract to add more tracing-related data fields. 
+This project is modified from the above dApp. We revised the smart contract to add more tracing-related data fields.
+
+![Screenshot](./images/trace.png)
+
 
 # Steps
 
 ## configure hardhat.config.js
 
 1. Copy and paste your private key from metamask (see below)
-![metamask](./client/images/metamask.png)
+![metamask](./images/metamask.png)
 
 2. create a dApp on alchemy.com (https://www.alchemy.com/)
-![alchemy](./client/images/alchemy.png)  
+![alchemy](./images/alchemy.png)  
 Note: The dApp is deployed on sepolia testnet, not the mainnet.
 
 3. Copy and paste the https link.
-![dApp](./client/images/dApp.png)
+![dApp](./images/dApp.png)
 
 4. The completed hardhat.config.js file should look like this:
 
@@ -79,7 +82,7 @@ npm run dev
 
 The dApp needs gas to operate. Get some sepoliaETH from https://faucet.sepolia.com/ (you need to have a sepolia account).
 
-![faucet](./client/images/faucet.png)
+![faucet](./images/faucet.png)
 
 Run prepare_imageset.ipynb to resize and rename images and store them to the ./client/images folder.
 
