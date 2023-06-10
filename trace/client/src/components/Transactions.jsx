@@ -2,13 +2,11 @@ import React, { useContext } from "react";
 
 import { TransactionContext } from "../context/TransactionContext";
 
-import useFetch from "../hooks/useFetch";
 import dummyData from "../utils/dummyData";
 import { shortenAddress } from "../utils/shortenAddress";
 
 const TransactionsCard = ({ addressTo, addressFrom, timestamp, batch_id, phase_id, 
   metadata, digest }) => {
-  //const gifUrl = useFetch({ message });
   const jpgUrl = digest.endsWith('.jpg')? '/images/' + digest: '/images/' + digest + '.jpg';
 
   return (

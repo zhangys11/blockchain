@@ -7,6 +7,10 @@ import { TransactionContext } from "../context/TransactionContext";
 import { shortenAddress } from "../utils/shortenAddress";
 import { Loader } from ".";
 
+/* 
+React.js uses the className prop because class is a reserved word in JavaScript.
+*/
+
 
 const companyCommonStyles = "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
 
@@ -27,8 +31,9 @@ const Welcome = () => {
     sendTransaction, formData, isLoading } = useContext(TransactionContext);
 
   const handleSubmit = (e) => {
-    const { addressTo, amount, batch_id, phase_id, metadata, digest } = formData;
 
+    const { addressTo, amount, batch_id, phase_id, metadata, digest } = formData;
+    
     e.preventDefault();
 
     if (!addressTo || !amount || !batch_id || !phase_id || !metadata || !digest ) return;
@@ -46,12 +51,22 @@ const Welcome = () => {
                 </div>
               </div>
               <div>
-                <p class="text-white font-light text-sm">
+                <p className="text-white font-light text-sm">
                   Operator id: {currentAccount}
                 </p>
-                <span class="px-2 py-0.5 bg-green-500 text-white rounded font-semibold text-lg mt-1">
-                  Verified operator
-                </span>
+                {
+                  ['0x29683cb5304998b83138d79d789c5d194cbff52a'].indexOf(currentAccount) >=0 ?
+                  (
+                    <span className="px-2 py-0.5 bg-green-500 text-white rounded font-semibold text-lg mt-1">
+                      Verified operator
+                    </span>
+                  ):
+                  (
+                    <span className="px-2 py-0.5 bg-red-500 text-white rounded font-semibold text-lg mt-1">
+                      Unregistered operator
+                    </span>
+                  )
+                }                
               </div>
               {!currentAccount && (
                 <button
@@ -70,9 +85,12 @@ const Welcome = () => {
           &nbsp;&nbsp;&nbsp;&nbsp;
           
           <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-            <input placeholder="Address To" name="addressTo" type="hidden" value="0x28c6861Faa32F6f5135eFdaBDf5af7C4D6d057F8" />
-            <input placeholder="Amount (ETH)" name="amount" type="hidden" value="0" />
-            <Input placeholder="Asset GUID" name="message" type="text" handleChange={handleChange} />
+            <input placeholder="Address To" name="addressTo" type="hidden" value="0x28c6861Faa32F6f5135eFdaBDf5af7C4D6d057F8" onChange={handleChange} />
+            <input placeholder="Amount (ETH)" name="amount" type="hidden" value="0" onChange={handleChange} />
+            <Input placeholder="Batch ID" name="batch_id" type="text" value="T000LYLM" handleChange={handleChange} />
+            <Input placeholder="Phase ID" name="phase_id" type="text" value='{"id": 1, "name": "育苗"}' handleChange={handleChange} />
+            <Input placeholder="Metadata (json)" name="metadata" value='{"modality": 高效液相色谱(HPLC), "range": "亚麻酸: 2%-10%", "value": "3%"}' type="text" handleChange={handleChange} />
+            <Input placeholder="Digest" name="digest" value="0e32dcede2d988353f09902da630e397" type="text" handleChange={handleChange} />
 
             <div className="h-[1px] w-full bg-gray-400 my-2" />
 
@@ -84,7 +102,7 @@ const Welcome = () => {
                   onClick={handleSubmit}
                   className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
                 >
-                  Send now
+                  Upload Now
                 </button>
               )}
           </div>
