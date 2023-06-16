@@ -56,6 +56,8 @@ generate abi
 npx hardhat compile
 ```
 
+2. (Optional) Start the local Hardhat node
+
 ```sh
 npx hardhat node
 ```

@@ -15,6 +15,9 @@ This project is modified from the above dApp. We revised the smart contract to a
 
 ![Screenshot](./images/trace.png)
 
+## 3. Dapp3 - NFT
+
+This project is based on this tutorial (https://www.youtube.com/watch?v=GKJBEEXUha0)
 
 # Steps
 
@@ -77,7 +80,6 @@ Note: Popular 3rd-party node provider comparison (Alchemy vs Infura)
 ```
 require("@nomiclabs/hardhat-waffle");
 module.exports = {
-  solidity: "0.8.9",
   networks: {
     sepolia: {
       url: "https://eth-sepolia.g.alchemy.com/v2/JA5X0KC_sVNPzgVa2lalkbYW0hfq2HOY",
@@ -85,6 +87,26 @@ module.exports = {
     }
   }
 }
+```
+
+or if you use polygon mumbai testnet, the hardhat.config.js file should look like this:
+```
+require("@nomiclabs/hardhat-waffle");
+module.exports = {
+  networks: {
+    hardhat: {
+      chainId: 80001
+    },
+    mumbai: {
+      url: "https://polygon-mumbai.g.alchemy.com/v2/QI5McvJ5VL2tIX4xDaSoOHpo_c1bG_7e",
+      accounts: ['your private key (get from metamask)']
+    },
+  }
+}
+```
+You also need to specify the mumbai testnet RPC url anywhere needed:  
+```
+const provider = new ethers.providers.JsonRpcProvider("https://rpc-mumbai.maticvigil.com") // otherwise, will use localhost:8545
 ```
 
 ## Write the smart contract (Transaction.sol).
@@ -99,7 +121,7 @@ cd smart_contract
 npm install hardhat @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers @nomiclabs/hardhat-etherscan
 npx hardhat help
 npx hardhat test
-npx hardhat run scripts/deploy.js --network sepolia
+npx hardhat run scripts/deploy.js --network sepolia (or mumbai)
 
     Transactions address: 0xE2DaBD738A3f5F434925d32Ff1e8B4AF3b63Fe94 (copy this to contractAddress in constants.js; each run will differ)
 
@@ -122,7 +144,8 @@ npm install tailwindcss react-icons ethers
 npm run dev
 ```
 
-The dApp needs gas to operate. Get some sepoliaETH from https://faucet.sepolia.com/ (you need to have a sepolia account).
+The dApp needs gas to operate. Get some sepoliaETH from https://faucet.sepolia.com/ (you need to have a sepolia account).   
+If you use polygon mumbai, get Matic tokens from https://mumbaifaucet.com/
 
 ![faucet](./images/faucet.png)
 
