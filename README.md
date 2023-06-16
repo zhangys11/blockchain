@@ -21,13 +21,55 @@ This project is modified from the above dApp. We revised the smart contract to a
 ## configure hardhat.config.js
 
 1. Copy and paste your private key from metamask (see below)
+
 ![metamask](./images/metamask.png)
 
-2. create a dApp on alchemy.com (https://www.alchemy.com/)
+2. create a dApp on Alchemy (https://www.alchemy.com/)
+
 ![alchemy](./images/alchemy.png)  
-Note: The dApp is deployed on sepolia testnet, not the mainnet.
+Note: The dApp is deployed on sepolia testnet, not the mainnet.  
+
+Note: Why we use a 3rd-party node provider, other than use our own node?   
+By running our own Node we mean that your server stores the entire blockchain. You may choose whether your Node should validate every block of data before adding it to the blockchain (mining, PoW). A Full Node sync can take around a month or two for
+downloading the whole blockchain. The Light Node sync can take up to several weeks. 
+Hardware requirements to run your own node: 
+At least 2TB of SDD; 4GB Ram; Connected to the internet 24*7. 
+[Check this](3rd_node_vs_own_node.pdf). 
+
+Note: Popular 3rd-party node provider comparison (Alchemy vs Infura) 
+<table>
+<tbody>
+<tr>
+<td>&nbsp;</td>
+<td>Alchemy</td>
+<td>Infura</td>
+</tr>
+<tr>
+<td>Supported Layer 1 networks</td>
+<td>Ethereum Mainnet, Solana&nbsp;<br><br>Tesnets – Rinkeby, Goerli, Kovan, and the Ropsten network</td>
+<td>Ethereum Mainnet &nbsp;<br><br>Testnets – Rinkeby, Goerli, Kovan, and the Ropsten network</td>
+</tr>
+<tr>
+<td>Supported Layer 2 Network</td>
+<td>Polygon, Arbitrum network, and Optimism</td>
+<td>Polygon, Arbitrum, Optimism, and the Palm network</td>
+</tr>
+<tr>
+<td>Miscellaneous Services</td>
+<td>Alchemy Notify, NFT API</td>
+<td>IPFS API</td>
+</tr>
+<tr>
+<td>Free Plans</td>
+<td>300 million compute units per month, for up to 5 applications</td>
+<td>100,000 requests per day, for up to 3 different applications &nbsp;<br>Free 5GB IPFS storage</td>
+</tr>
+</tbody>
+</table>
+<hr/>
 
 3. Copy and paste the https link.
+
 ![dApp](./images/dApp.png)
 
 4. The completed hardhat.config.js file should look like this:
