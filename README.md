@@ -111,7 +111,9 @@ const provider = new ethers.providers.JsonRpcProvider("https://rpc-mumbai.maticv
 
 [web3storage](web3.storage.png)
 
-npm install -g @web3-storage/w3 
+npm install web3.storage 
+
+npm install hardhat @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers @nomiclabs/hardhat-etherscan next react react-dom web3modal web3.storage tailwindcss @tailwindcss/forms postcss autoprefixer eslint eslint-config-next
 
 ## Write the smart contract (Transaction.sol).
 
