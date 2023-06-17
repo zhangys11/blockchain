@@ -8,6 +8,7 @@ import {
 } from '../config'
 
 import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+import { constructImgUrl } from "../utils/image_url_helper";
 
 export default function CreatorDashboard() {
   const [nfts, setNfts] = useState([])
@@ -17,7 +18,7 @@ export default function CreatorDashboard() {
   }, [])
   async function loadNFTs() {
     const web3Modal = new Web3Modal({
-      network: 'mainnet',
+      network: 'Mumbai', // "mainnet",
       cacheProvider: true,
     })
     const connection = await web3Modal.connect()
@@ -29,14 +30,14 @@ export default function CreatorDashboard() {
 
     const items = await Promise.all(data.map(async i => {
       const tokenUri = await contract.tokenURI(i.tokenId)
-      const meta = await axios.get(tokenUri)
+      console.log(i.tokenId)
       let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
       let item = {
         price,
         tokenId: i.tokenId.toNumber(),
         seller: i.seller,
         owner: i.owner,
-        image: meta.data.image,
+        image: constructImgUrl(i.guid), // '/images/' + i.guid + '.jpg', //meta.data.image,
       }
       return item
     }))
@@ -57,6 +58,7 @@ export default function CreatorDashboard() {
                 <div className="p-4 bg-black">
                   <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
                 </div>
+                console.log('Dashboard img src:', nft.image)
               </div>
             ))
           }

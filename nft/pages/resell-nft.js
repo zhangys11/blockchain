@@ -9,6 +9,7 @@ import {
 } from '../config'
 
 import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+import { constructImgUrl } from "../utils/image_url_helper";
 
 export default function ResellNFT() {
   const [formInput, updateFormInput] = useState({ price: '', image: '' })
@@ -22,8 +23,8 @@ export default function ResellNFT() {
 
   async function fetchNFT() {
     if (!tokenURI) return
-    const meta = await axios.get(tokenURI)
-    updateFormInput(state => ({ ...state, image: meta.data.image }))
+    // const meta = await axios.get(tokenURI)
+    updateFormInput(state => ({ ...state, image: tokenURI }))
   }
 
   async function listNFTForSale() {
@@ -54,7 +55,7 @@ export default function ResellNFT() {
         />
         {
           image && (
-            <img className="rounded mt-4" width="350" src={image} />
+            <img className="rounded mt-4" width="350" src={constructImgUrl(image)} /> // '/images/' + image + '.jpg'
           )
         }
         <button onClick={listNFTForSale} className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg">

@@ -109,6 +109,10 @@ You also need to specify the mumbai testnet RPC url anywhere needed:
 const provider = new ethers.providers.JsonRpcProvider("https://rpc-mumbai.maticvigil.com") // otherwise, will use localhost:8545
 ```
 
+[web3storage](web3.storage.png)
+
+npm install -g @web3-storage/w3 
+
 ## Write the smart contract (Transaction.sol).
 
 This contract defines and stores a struct to the blockchain.  

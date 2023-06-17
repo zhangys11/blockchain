@@ -8,6 +8,7 @@ import {
 } from '../config'
 
 import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+import { constructImgUrl } from "../utils/image_url_helper";
 
 export default function Home() {
   const [nfts, setNfts] = useState([])
@@ -34,7 +35,7 @@ export default function Home() {
         tokenId: i.tokenId.toNumber(),
         seller: i.seller,
         owner: i.owner,
-        image: meta.data.image,
+        image: constructImgUrl(i.guid), // '/images/' + i.guid + '.jpg', //meta.data.image,
         name: meta.data.name,
         description: meta.data.description,
       }
@@ -67,7 +68,7 @@ export default function Home() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <img src={nft.image} />
+                 src={nft.image} />
                 <div className="p-4">
                   <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
                   <div style={{ height: '70px', overflow: 'hidden' }}>
