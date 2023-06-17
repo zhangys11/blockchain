@@ -4,11 +4,19 @@ import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
 
-const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
-
 import {
   marketplaceAddress
 } from '../config'
+
+import {Web3Storage_token} from '../api_token.config'
+
+// use web3 storage: https://web3.storage/docs/reference/js-client-library/?js-lib=browser
+import { Web3Storage } from 'web3.storage';
+
+// Construct with token and endpoint
+const client = new Web3Storage({ token: Web3Storage_token });
+
+// const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
 import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 
@@ -20,6 +28,17 @@ export default function CreateItem() {
   async function onChange(e) {
     const file = e.target.files[0]
     try {
+
+      // Pack files into a CAR and send to web3.storage
+      const onRootCidReady = rootCid => console.log('root cid:', rootCid);
+      const onStoredChunk = chunkSize => console.log(`stored chunk of ${chunkSize} bytes`);
+      const rootCid = await client.put([file], {
+        name: new Date().toLocaleString(), // The name is not stored alongside the data on IPFS, but it is viewable within the file listing on the web3.storage site.
+        maxRetries: 3,
+        onRootCidReady, 
+        onStoredChunk,
+      });
+
       const added = await client.add(
         file,
         {
