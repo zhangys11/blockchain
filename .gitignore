@@ -9,4 +9,3 @@ cache
 artifacts
 /images.aigc/
 *.mp4
-nft/api_token.js

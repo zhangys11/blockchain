@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Web3Modal from 'web3modal'
 
 import {
-  marketplaceAddress
+  marketplaceAddress, jsonRpcApi
 } from '../config'
 
 import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
@@ -16,10 +16,14 @@ export default function Home() {
     loadNFTs()
   }, [])
   async function loadNFTs() {
+    
     /* create a generic provider and query for unsold market items */
-    const provider = new ethers.providers.JsonRpcProvider("https://rpc-mumbai.maticvigil.com") // default will use localhost
+    const provider = new ethers.providers.JsonRpcProvider(jsonRpcApi) // default will use localhost
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi, provider)
     const data = await contract.fetchMarketItems()
+
+    let name = ''
+    let description = ''
 
     /*
     *  map over items returned from smart contract and format 
@@ -27,15 +31,12 @@ export default function Home() {
     */
     const items = await Promise.all(data.map(async i => {
       const tokenUri = await contract.tokenURI(i.tokenId)
-      let name = ''
-      let description = ''
       try{        
         let json_uri = tokenUri.replace('.jpg','.json')
-        console.log(json_uri)
-        fetch(json_uri)
+        // console.log(json_uri)
+        await fetch(json_uri)
           .then(response => response.json())
-          .then(json => {
-            const obj = JSON.parse(json);
+          .then(obj => {
             name = obj.name;
             description = obj.description;
         });
@@ -59,6 +60,7 @@ export default function Home() {
     setNfts(items)
     setLoadingState('loaded') 
   }
+
   async function buyNft(nft) {
     /* needs the user to sign the transaction, so will use Web3Provider and sign it */
     const web3Modal = new Web3Modal()
@@ -75,6 +77,9 @@ export default function Home() {
     await transaction.wait()
     loadNFTs()
   }
+
+  console.log(nfts)
+
   if (loadingState === 'loaded' && !nfts.length) return (<h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>)
   return (
     <div className="flex justify-center">
@@ -91,7 +96,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="p-4 bg-black">
-                  <p className="text-2xl font-bold text-white">{nft.price} ETH</p>
+                  <p className="text-2xl font-bold text-white">{nft.price} MATIC</p>
                   <button className="mt-4 w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={() => buyNft(nft)}>Buy</button>
                 </div>
               </div>

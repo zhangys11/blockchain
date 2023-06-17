@@ -17,20 +17,23 @@ This project is modified from the above dApp. We revised the smart contract to a
 
 ## 3. Dapp3 - NFT
 
-This project is based on this tutorial (https://www.youtube.com/watch?v=GKJBEEXUha0)
+This project is based on this tutorial (https://www.youtube.com/watch?v=GKJBEEXUha0).  
+Major changes from the original version: 1. use web3.storage to store the image instead of infura ipfs; 2. store a companion json file along with the image file. 3. update to next.js v13.
 
-# Steps
+![Screenshot](./images/nft.png)
+
+# Preparation 
 
 ## configure hardhat.config.js
 
-1. Copy and paste your private key from metamask (see below)
+### 1. Copy and paste your private key from metamask (see below)
 
 ![metamask](./images/metamask.png)
 
-2. create a dApp on Alchemy (https://www.alchemy.com/)
+### 2. create a dApp on Alchemy (https://www.alchemy.com/)
 
 ![alchemy](./images/alchemy.png)  
-Note: The dApp is deployed on sepolia testnet, not the mainnet.  
+Note: The dApp is deployed on sepolia / mumbai testnet, not the ethereum / polygon mainnet.  
 
 Note: Why we use a 3rd-party node provider, other than use our own node?   
 By running our own Node we mean that your server stores the entire blockchain. You may choose whether your Node should validate every block of data before adding it to the blockchain (mining, PoW). A Full Node sync can take around a month or two for
@@ -71,12 +74,13 @@ Note: Popular 3rd-party node provider comparison (Alchemy vs Infura)
 </table>
 <hr/>
 
-3. Copy and paste the https link.
+### 3. Copy and paste the https link.
 
 ![dApp](./images/dApp.png)
 
-4. The completed hardhat.config.js file should look like this:
+### 4. The completed hardhat.config.js file should look like this:
 
+(1) sepolia testnet
 ```
 require("@nomiclabs/hardhat-waffle");
 module.exports = {
@@ -88,8 +92,7 @@ module.exports = {
   }
 }
 ```
-
-or if you use polygon mumbai testnet, the hardhat.config.js file should look like this:
+(2) mumbai testnet:
 ```
 require("@nomiclabs/hardhat-waffle");
 module.exports = {
@@ -104,30 +107,47 @@ module.exports = {
   }
 }
 ```
-You also need to specify the mumbai testnet RPC url anywhere needed:  
+## (dApp3 only) Create a web3.storage account and get the API key (the API key should be kept secret).
+
+![web3.storage](./images/web3storage.png)
+
+In deploy.js, replace the API key with your own key:
 ```
-const provider = new ethers.providers.JsonRpcProvider("https://rpc-mumbai.maticvigil.com") // otherwise, will use localhost:8545
+  fs.writeFileSync('./config.js', `export const marketplaceAddress = "${nftMarketplace.address}"
+  export const jsonRpcApi = 'https://rpc-mumbai.maticvigil.com'
+  
+  // Web3Storage_token must be kept secret
+  export const Web3Storage_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEE5YjFCMzJDYzI3YzJlMWFBNDFGQzg2ZmE1ZUFjRDMyYmNmNDZiNjkiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODY5MzA3MTI1NTYsIm5hbWUiOiJuZnQifQ.t_pWBYILN8Rkq5HKl51cUhQpNJpvaCjYzu1FpeWrdHA'
+  `) 
 ```
 
-[web3storage](web3.storage.png)
+In this above deploy.js, also specify the mumbai testnet RPC url. It will be used in:  
+```
+const provider = new ethers.providers.JsonRpcProvider(jsonRpcApi) // otherwise, will use localhost:8545
+```
 
-npm install web3.storage 
+# Setup of dApp1 and dApp2
 
-npm install hardhat @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers @nomiclabs/hardhat-etherscan next react react-dom web3modal web3.storage tailwindcss @tailwindcss/forms postcss autoprefixer eslint eslint-config-next
+## Write the smart contract 
 
-## Write the smart contract (Transaction.sol).
+(1) Transaction.sol for dApp1 and dApp2
 
 This contract defines and stores a struct to the blockchain.  
 In solidity, `msg` is a global variable in Solidity which handles everything related to the blockchain in the properties that it holds. Right from the gas fees to the amount of ether required to call any function in the smart contract, all of these values are stored inside the msg global variable and can be accessed by using the dot(.) operator.
+
+(2) NFTMarket.sol for dApp3
+
+This contract is much more complex that defines NFT creation and trading.
 
 1. Setup env and compile the contract.
 
 ```
 cd smart_contract
+npm install 
 npm install hardhat @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers @nomiclabs/hardhat-etherscan
 npx hardhat help
 npx hardhat test
-npx hardhat run scripts/deploy.js --network sepolia (or mumbai)
+npx hardhat run scripts/deploy.js --network sepolia
 
     Transactions address: 0xE2DaBD738A3f5F434925d32Ff1e8B4AF3b63Fe94 (copy this to contractAddress in constants.js; each run will differ)
 
@@ -151,13 +171,33 @@ npm run dev
 ```
 
 The dApp needs gas to operate. Get some sepoliaETH from https://faucet.sepolia.com/ (you need to have a sepolia account).   
-If you use polygon mumbai, get Matic tokens from https://mumbaifaucet.com/
 
 ![faucet](./images/faucet.png)
 
 Run prepare_imageset.ipynb to resize and rename images and store them to the ./client/images folder.
 
-## Deploy on CentOS + nginx
+
+# Setup of dApp3
+
+First run: 
+```
+npx create-next-app@latest
+npm install hardhat @openzeppelin/contracts npm@nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers @nomiclabs/hardhat-etherscan web3.storage
+```
+Otherwise:
+```
+npm install
+npx hardhat test
+npx hardhat run scripts/deploy.js --network mumbai
+```
+
+Get some polygon matic tokens from https://mumbaifaucet.com/
+
+```
+npm run dev
+```
+
+# Deploy on CentOS + nginx
 
 ```
 # curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
@@ -170,7 +210,5 @@ sudo npm install
 sudo npm run build
 ``` 
 
-Copy /images to /dist and set the /dist as the website's working folder.   
+Copy /images or /publish (static content folder) to /dist and set the /dist as the website's working folder.   
 Set the website's php version to static (php not needed).  
-
-Finished.

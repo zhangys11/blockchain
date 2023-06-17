@@ -27,10 +27,8 @@ return new File([u8arr], filename, {type:mime});
 }
 
 import {
-  marketplaceAddress
+  marketplaceAddress, Web3Storage_token
 } from '../config'
-
-import {Web3Storage_token} from '../api_token'
 
 // use web3 storage: https://web3.storage/docs/reference/js-client-library/?js-lib=browser
 import { Web3Storage } from 'web3.storage'
@@ -44,12 +42,12 @@ import { constructImgUrl } from "../utils/image_url_helper";
 
 export default function CreateItem() {
   const [fileUrl, setFileUrl] = useState(null)
-  const [formInput, updateFormInput] = useState({ price: '0.01', name: '大碗岛的星期天下午', 
-  description: `作品名:大碗岛的星期天下午 A Sunday Afternoon on the Ile de la Grande Jatte
+  const [formInput, updateFormInput] = useState({ price: '0.01', name: 'e.g., 大碗岛的星期天下午', 
+  description: `e.g., 作品名:大碗岛的星期天下午 A Sunday Afternoon on the Ile de la Grande Jatte
   艺术家：乔治·修拉
   创作时间：1884－1886年
   作品材质:布面油画 207.5x308.1cm
-  现藏地点:美国-芝加哥-芝加哥艺术学院`, guid: '63e0a4b77cbde0fcea0835f414c0f230'})
+  现藏地点:美国-芝加哥-芝加哥艺术学院`, guid: '作品的MD5唯一标识符，由上传文件自动生成' })
   const router = useRouter()
 
   async function onChange(e) {
@@ -141,7 +139,7 @@ export default function CreateItem() {
           onChange={e => updateFormInput({ ...formInput, description: e.target.value })}
         />
         <input
-          placeholder="Asset Price in Eth"
+          placeholder="Asset Price in MATIC"
           className="mt-2 border rounded p-4"
           value = {formInput.price}
           onChange={e => updateFormInput({ ...formInput, price: e.target.value })}
