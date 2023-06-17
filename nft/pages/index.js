@@ -27,6 +27,23 @@ export default function Home() {
     */
     const items = await Promise.all(data.map(async i => {
       const tokenUri = await contract.tokenURI(i.tokenId)
+      let name = ''
+      let description = ''
+      try{        
+        let json_uri = tokenUri.replace('.jpg','.json')
+        console.log(json_uri)
+        fetch(json_uri)
+          .then(response => response.json())
+          .then(json => {
+            const obj = JSON.parse(json);
+            name = obj.name;
+            description = obj.description;
+        });
+      }
+      catch{
+        console.log('Load remote json file failed.')
+      }
+
       let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
       let item = {
         price,
@@ -34,8 +51,8 @@ export default function Home() {
         seller: i.seller,
         owner: i.owner,
         image: constructImgUrl(tokenUri), // '/' + i.guid + '.jpg', //meta.data.image,
-        name: i.name, // meta.data.name,
-        description: i.description, // meta.data.description,
+        name: name, // meta.data.name,
+        description: description, // meta.data.description,
       }
       return item
     }))

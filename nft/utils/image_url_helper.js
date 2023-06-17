@@ -1,3 +1,3 @@
 
-export const constructImgUrl = (guid) => ('/' + guid + '.jpg');
+export const constructImgUrl = (guid) => guid.includes('/')? guid: '/' + guid + '.jpg';
 

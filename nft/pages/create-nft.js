@@ -71,8 +71,8 @@ export default function CreateItem() {
   }
 
   async function listNFTForSale() {
-    await uploadToIPFS() //formInput.guid
-    console.log(fileUrl)
+    const url = await uploadToIPFS() //formInput.guid
+    console.log(url)
     const web3Modal = new Web3Modal()
     const connection = await web3Modal.connect()
     const provider = new ethers.providers.Web3Provider(connection)
@@ -83,7 +83,7 @@ export default function CreateItem() {
     let contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi, signer)
     let listingPrice = await contract.getListingPrice()
     listingPrice = listingPrice.toString()
-    let transaction = await contract.createToken(fileUrl, price, { value: listingPrice })
+    let transaction = await contract.createToken(url, price, { value: listingPrice })
     await transaction.wait()
    
     router.push('/')
@@ -98,14 +98,16 @@ export default function CreateItem() {
       name, description, price, guid
     })
 
-    console.log(json_data)
+    const blob = new Blob([json_data], { type: 'application/json' })
 
     const file = dataURLtoFile(fileUrl, guid + '.jpg') // revert the img src to a file object
     
-    const fileInput = document.querySelector('input[type="file"]')
+    // const fileInput = document.querySelector('input[type="file"]')
 
     // Pack files into a CAR and send to web3.storage
-    const rootCid = await client.put(fileInput.files) // Promise<CIDString>
+    const rootCid = await client.put([
+      file, 
+      new File([blob], guid + '.json')]) // fileInput.files
 
     // Get info on the Filecoin deals that the CID is stored in
     const info = await client.status(rootCid) // Promise<Status | undefined>
@@ -115,26 +117,12 @@ export default function CreateItem() {
     const files = await res.files() // Promise<Web3File[]>
 
     for (const file of files) {
-      console.log(`${file.cid} ${file.name} ${file.size}`)
+      // console.log(`${file.cid} ${file.name} ${file.size}`)
+      const url = `https://${rootCid.toString()}.ipfs.w3s.link/${file.name}`
+      if (url.endsWith('.jpg')) {
+        return url; //setFileUrl(url)
+      }
     }
-
-    return
-
-    // Pack files into a CAR and send to web3.storage
-    const onRootCidReady = rootCid => {
-      console.log('root cid:', rootCid);
-      // const url = await client.get(rootCid); 
-      const url = `https://${rootCid.toString()}.ipfs.w3s.link/`
-      console.log(url);
-      setFileUrl(url)
-    }
-    const onStoredChunk = chunkSize => console.log(`stored chunk of ${chunkSize} bytes`);
-    rootCid2 = await client.put([file], {
-      name: 'evidence', // json_data, // new Date().toLocaleString(), // The name is not stored alongside the data on IPFS, but it is viewable within the file listing on the web3.storage site.
-      maxRetries: 3,
-      onRootCidReady, 
-      onStoredChunk,
-    });
   }
 
   return (

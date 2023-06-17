@@ -36,7 +36,7 @@ export default function CreatorDashboard() {
         tokenId: i.tokenId.toNumber(),
         seller: i.seller,
         owner: i.owner,
-        image: constructImgUrl(tokenUri), // '/' + i.guid + '.jpg', //meta.data.image,
+        image: tokenUri,
       }
       return item
     }))
