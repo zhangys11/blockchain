@@ -11,8 +11,8 @@ async function main() {
   export const jsonRpcApi = 'https://rpc-mumbai.maticvigil.com'
   
   // Web3Storage_token must be kept secret
-  export const Web3Storage_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEE5YjFCMzJDYzI3YzJlMWFBNDFGQzg2ZmE1ZUFjRDMyYmNmNDZiNjkiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODY5MzA3MTI1NTYsIm5hbWUiOiJuZnQifQ.t_pWBYILN8Rkq5HKl51cUhQpNJpvaCjYzu1FpeWrdHA'
-  `) 
+  export const Web3Storage_token = 'your key here'
+  `)
 }
 
 main()
