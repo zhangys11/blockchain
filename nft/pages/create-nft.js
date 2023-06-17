@@ -60,7 +60,7 @@ export default function CreateItem() {
 
 
   async function listNFTForSale() {
-    const url = formInput.guid // '/images' + formInput.guid + '.jpg'
+    const url = formInput.guid
     const web3Modal = new Web3Modal()
     const connection = await web3Modal.connect()
     const provider = new ethers.providers.Web3Provider(connection)
@@ -88,7 +88,7 @@ export default function CreateItem() {
         />
         <textarea
           placeholder="Asset Description"
-          className="mt-2 border rounded p-4"
+          className="mt-2 border rounded p-4 h-36"
           value={formInput.description}
           onChange={e => updateFormInput({ ...formInput, description: e.target.value })}
         />

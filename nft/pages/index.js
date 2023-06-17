@@ -1,6 +1,5 @@
 import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import Web3Modal from 'web3modal'
 
 import {
@@ -28,16 +27,15 @@ export default function Home() {
     */
     const items = await Promise.all(data.map(async i => {
       const tokenUri = await contract.tokenURI(i.tokenId)
-      const meta = await axios.get(tokenUri)
       let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
       let item = {
         price,
         tokenId: i.tokenId.toNumber(),
         seller: i.seller,
         owner: i.owner,
-        image: constructImgUrl(i.guid), // '/images/' + i.guid + '.jpg', //meta.data.image,
-        name: meta.data.name,
-        description: meta.data.description,
+        image: constructImgUrl(tokenUri), // '/' + i.guid + '.jpg', //meta.data.image,
+        name: i.name, // meta.data.name,
+        description: i.description, // meta.data.description,
       }
       return item
     }))
@@ -68,7 +66,7 @@ export default function Home() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                 src={nft.image} />
+                <img src={nft.image} />
                 <div className="p-4">
                   <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
                   <div style={{ height: '70px', overflow: 'hidden' }}>

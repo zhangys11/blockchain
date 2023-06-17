@@ -30,14 +30,14 @@ export default function CreatorDashboard() {
 
     const items = await Promise.all(data.map(async i => {
       const tokenUri = await contract.tokenURI(i.tokenId)
-      console.log(i.tokenId)
+      // console.log(i.tokenId.toString(), tokenUri)
       let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
       let item = {
         price,
         tokenId: i.tokenId.toNumber(),
         seller: i.seller,
         owner: i.owner,
-        image: constructImgUrl(i.guid), // '/images/' + i.guid + '.jpg', //meta.data.image,
+        image: constructImgUrl(tokenUri), // '/' + i.guid + '.jpg', //meta.data.image,
       }
       return item
     }))
@@ -58,7 +58,6 @@ export default function CreatorDashboard() {
                 <div className="p-4 bg-black">
                   <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
                 </div>
-                console.log('Dashboard img src:', nft.image)
               </div>
             ))
           }
