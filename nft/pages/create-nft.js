@@ -39,6 +39,9 @@ const client = new Web3Storage({ token: Web3Storage_token });
 import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 import { constructImgUrl } from "../utils/image_url_helper";
 
+function isFileImage(file) {
+  return file && file['type'].split('/')[0] === 'image';
+}
 
 export default function CreateItem() {
   const [fileUrl, setFileUrl] = useState(null)
@@ -53,11 +56,14 @@ export default function CreateItem() {
   async function onChange(e) {
     const file = e.target.files[0]
     var reader = new FileReader();
+    const ext = file.name.split('.').pop()
+
+    console.log(isFileImage(file))
 
     reader.onload = function(event) {
       var binary = event.target.result;
       var md5 = CryptoJS.MD5(binary).toString();
-      updateFormInput({ ...formInput, guid: md5 })
+      updateFormInput({ ...formInput, guid: md5 + '.' + ext })
     };
     reader.readAsBinaryString(file); // get MD5 hash
 
@@ -69,8 +75,7 @@ export default function CreateItem() {
   }
 
   async function listNFTForSale() {
-    const url = await uploadToIPFS() //formInput.guid
-    console.log(url)
+    const url = await uploadToIPFS()
     const web3Modal = new Web3Modal()
     const connection = await web3Modal.connect()
     const provider = new ethers.providers.Web3Provider(connection)
@@ -97,8 +102,7 @@ export default function CreateItem() {
     })
 
     const blob = new Blob([json_data], { type: 'application/json' })
-
-    const file = dataURLtoFile(fileUrl, guid + '.jpg') // revert the img src to a file object
+    const file = dataURLtoFile(fileUrl, guid) // revert the img src to a file object
     
     // const fileInput = document.querySelector('input[type="file"]')
 
@@ -117,7 +121,7 @@ export default function CreateItem() {
     for (const file of files) {
       // console.log(`${file.cid} ${file.name} ${file.size}`)
       const url = `https://${rootCid.toString()}.ipfs.w3s.link/${file.name}`
-      if (url.endsWith('.jpg')) {
+      if (!url.endsWith('.json')) {
         return url; //setFileUrl(url)
       }
     }
@@ -155,6 +159,7 @@ export default function CreateItem() {
           type="file"
           name="Asset"
           className="my-4"
+          accept="image/*"
           onChange={onChange}
         />
         {

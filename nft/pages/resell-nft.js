@@ -44,6 +44,8 @@ export default function ResellNFT() {
     router.push('/')
   }
 
+  const ext = image.split('.').pop()
+
   return (
     <div className="flex justify-center">
       <div className="w-1/2 flex flex-col pb-12">
@@ -52,9 +54,9 @@ export default function ResellNFT() {
           className="mt-2 border rounded p-4"
           onChange={e => updateFormInput({ ...formInput, price: e.target.value })}
         />
-        {
+        { //&& (ext == 'jpg' || ext == 'png'|| ext == 'gif') 
           image && (
-            <img className="rounded mt-4" width="350" src={constructImgUrl(image)} /> // '/images/' + image + '.jpg'
+            <img className="rounded mt-4" width="350" src={constructImgUrl(image)} />
           )
         }
         <button onClick={listNFTForSale} className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg">

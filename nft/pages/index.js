@@ -32,7 +32,7 @@ export default function Home() {
     const items = await Promise.all(data.map(async i => {
       const tokenUri = await contract.tokenURI(i.tokenId)
       try{        
-        let json_uri = tokenUri.replace('.jpg','.json')
+        let json_uri = tokenUri.replace('.' + tokenUri.split('.').pop(), '.json')
         // console.log(json_uri)
         await fetch(json_uri)
           .then(response => response.json())
@@ -51,7 +51,7 @@ export default function Home() {
         tokenId: i.tokenId.toNumber(),
         seller: i.seller,
         owner: i.owner,
-        image: constructImgUrl(tokenUri), // '/' + i.guid + '.jpg', //meta.data.image,
+        image: constructImgUrl(tokenUri),
         name: name, // meta.data.name,
         description: description, // meta.data.description,
       }
