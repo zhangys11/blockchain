@@ -10,3 +10,4 @@ artifacts
 /images.aigc/
 *.mp4
 nft/config.js
+.svn/
